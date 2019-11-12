@@ -4,11 +4,12 @@ namespace ktourvas\LaravelBlog\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use ktourvas\LaravelMediable\Entities\Mediable;
-use ktourvas\LaravelSeoable\Entities\Seoable;
+//use ktourvas\LaravelSeoable\Entities\Seoable;
 
 class Article extends Model {
 
-    use Mediable, Seoable;
+    use Mediable;
+//        Seoable;
 
     protected $fillable = [ 'slug', 'user_id' ];
 
@@ -27,9 +28,9 @@ class Article extends Model {
      *
      * @return string
      */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+//    public function getRouteKeyName()
+//    {
+//        return 'slug';
+//    }
 
 }

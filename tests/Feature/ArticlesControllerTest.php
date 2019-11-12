@@ -29,21 +29,23 @@ class ArticlesControllerTest extends BaseTestCase
 
         $response->assertStatus(201);
 
-        $this->assertDatabaseHas('articles', compact( $this->attributes['slug'] ));
+        $this->assertDatabaseHas('lb_articles', compact( $this->attributes['slug'] ));
 
-        $this->assertDatabaseHas('article_bodies', compact( $this->attributes['body'] ));
+        $this->assertDatabaseHas('lb_article_bodies', compact( $this->attributes['body'] ));
 
         foreach ($this->attributes['titles'] as $title) {
-            $this->assertDatabaseHas('article_titles', [ 'type_id' => $title['type_id'], 'title' => $title['payload'] ] );
+            $this->assertDatabaseHas('lb_article_titles', [ 'type_id' => $title['type_id'], 'title' => $title['payload'] ] );
         }
 
         $response = $this->get('/api/blog');
+//        dd($response);
 
         foreach ($this->attributes['titles'] as $title) {
             $response->assertSee( $title['payload'] );
         }
 
         $response = $this->get('/api/blog/1');
+//        dd($response);
 
         foreach ($this->attributes['titles'] as $title) {
             $response->assertSee( $title['payload'] );
